@@ -11,7 +11,6 @@ class TestController extends Controller
     }
 
     public function aboutPage() {
-        $name = 'Ted';
-        return view('aboutPage', ['name' => $name]);
+        return view('single-post');
     }
 }
