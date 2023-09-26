@@ -22,8 +22,7 @@ class UserController extends Controller
 
         User::create($incomingFields);
 
-
-        return 'you are registered';
+        return redirect('/');
     }
 
     public function login(Request $req) {
@@ -38,10 +37,26 @@ class UserController extends Controller
         ]);
 
         if($userLogin) {
-            return 'you are logged in';
+            $req-> session()-> regenerate();
+            return redirect('/')-> with('success', 'You have successfully logged in.');
         } else {
             return 'login failled';
         };
 
+    }
+
+    public function useCorrectPage() {
+        $userLoggedIn = auth()-> check();
+        
+        if($userLoggedIn) {
+            return view('homePageDashboard');
+        } else {
+            return view('homePage');
+        };
+    }
+
+    public function logout() {
+        auth()-> logout();
+        return redirect('/');
     }
 }

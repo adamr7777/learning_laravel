@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +16,12 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [TestController::class, 'homePage']);
-
-Route::get('/about', [TestController::class, 'aboutPage']);
-
-
+Route::get('/', [UserController::class, 'useCorrectPage']);
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout']);
+
+Route::get('/create-post', [PostController::class, 'showCreatePost']);
 
 
